@@ -1,15 +1,16 @@
 pipeline {
     agent any 
     
-    environment {
-        SCANNER_HOME=tool 'sonar-scanner'
+    tools{
+        jdk 'jdk17'
+        maven 'maven3'
     }
     
-    stages{
+     stages{
         
         stage("Git Checkout"){
             steps{
-                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/writetoritika/Petclinic.git'
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/sampathnani7862/Petclinic.git'
             }
         }
         
@@ -24,5 +25,5 @@ pipeline {
                 sh "mvn test"
             }
         }
-        
-        
+     }
+}
